@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Enes's Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <!-- Favicon -->
+  <link rel="icon" href="assets/data-science.png" type="image/x-icon">
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    /* Intro Section */
+    #intro {
+      background: url('images/intro-bg.jpg') center center no-repeat;
+      background-size: cover;
+      padding: 100px 0;
+      color: white;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    #intro h1 {
+      font-size: 3em;
+    }
+    #intro p {
+      font-size: 1.2em;
+    }
+    /* Increase font size in intro */
+    #intro h1 {
+      font-size: 4.5em;
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    #intro p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+    /* Skills Section */
+    .skills-section {
+      background-color: #f4f4f4;
+      padding: 50px 0;
+      text-align: center;
+    }
+    .skills-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    .skills-section .skill {
+      display: inline-block;
+      width: 20%;
+      margin: 10px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .skills-section .skill i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #3498db;
+    }
+    /* Apply same background for projects and footer */
+    #projects, #footer {
+      background: url('images/intro-bg.jpg') center center no-repeat;
+      background-size: cover;
+      padding: 100px 0;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    /* Overlay for readability */
+    #projects::before, #footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    /* Featured Section Styling */
+    .post.featured {
+      background-color: #f1f1f1;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .post.featured header.major h2 {
+      font-size: 2.5em;
+      color: #333;
+      font-weight: bold;
+    }
+    .post.featured header.major p {
+      font-size: 1.2em;
+      color: #777;
+      margin-top: 15px;
+    }
+    #draggable-area {
+    position: relative;
+    width: 300px;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 20px auto; /* Center the draggable area horizontally */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better design */
+    }
+	#draggable-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #74b7ee;
+    border-radius: 25px; /* Same border radius */
+    border: 2px solid #74b7ee; /* Same color border */
+    pointer-events: none; /* Disable mouse events */
+    box-sizing: border-box;
+}
+
+.drag-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    }
+    #draggable-button {
+	background-color: #101ae0;
+	border: none;
+	border-radius: 25px;
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s, transform 0.3s;
+	position: relative; /* Butonu kaydırılabilir alanın içine yerleştirin */
+	z-index: 10; /* Butonun diğer öğelerin üzerinde görünmesini sağlar */
+	visibility: visible; /* Başlangıçta görünür olmasını sağla */
+	opacity: 1; /
+    }
+    .indicator {
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      background-color: #ddd;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .indicator.active {
+      background-color: #e70bbb;
+    }
+    .dragging {
+      background-color: #0b0401;
+    }
+  </style>
+</head>
+<body class="is-preload">
+  <!-- Wrapper -->
+  <div id="wrapper" class="fade-in">
+
+    <!-- Intro Section -->
+    <div id="intro">
+      <h1>Welcome to<br> Bekir Enes Siranli's <br>Portfolio</h1>
+      <p>A fully responsive portfolio showcasing my projects and experiences in tech and development.</p>
+      <ul class="actions">
+        <li><a href="#projects" class="button icon solid solo fa-arrow-down scrolly">View Projects</a></li>
+      </ul>
+    </div>
+
+    <!-- Skills Section (Key Skills) -->
+    <div id="projects" class="skills-section">
+      <h2>Key Skills</h2>
+      <div class="skill">
+        <i class="fa fa-code"></i>
+        <h3>Python</h3>
+      </div>
+      <div class="skill">
+        <i class="fa fa-database"></i>
+        <h3>SQL</h3>
+      </div>
+      <div class="skill">
+        <i class="fa fa-chart-line"></i>
+        <h3>Power BI</h3>
+      </div>
+      <div class="skill">
+        <i class="fa fa-file-excel"></i>
+        <h3>Excel</h3>
+      </div>
+    </div>
+
+    <!-- Main Section with Draggable Button -->
+    <div id="main">
+      <!-- Featured Project Section -->
+      <article class="post featured">
+        <header class="major">
+          <h2>Explore My Projects</h2>
+          <p>Take a look at the projects I’ve worked on, showcasing a variety of skills and technologies.</p>
+        </header>
+
+        <!-- Draggable Area with Button and Progress Indicators -->
+        <div id="draggable-area" class="button-link">
+			<div id="draggable-frame"></div> <!-- Çerçeve -->
+			<div id="draggable-container" class="drag-container">
+			  <button id="draggable-button" class="cool-project-button" draggable="true">
+				<i class="fa fa-arrow-right"></i> Let's go!
+			  </button>
+			</div>
+			<div id="progress-indicators">
+			  <span class="indicator"></span>
+			  <span class="indicator"></span>
+			  <span class="indicator"></span>
+			  <span class="indicator"></span>
+			  <span class="indicator"></span>
+			</div>
+		  </div>
+		  
+      </article>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+      <section>
+        <form method="post" action="#footer">
+          <div class="fields">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea name="message" id="message" rows="3"></textarea>
+            </div>
+          </div>
+          <ul class="actions">
+            <li><input type="submit" value="Send Message" /></li>
+          </ul>
+        </form>
+      </section>
+      <section class="split contact">
+        <section class="alt">
+          <h3>Location</h3>
+          <p>Istanbul, Turkey</p>
+        </section>
+        <section>
+          <h3>Email</h3>
+          <p><a href="mailto:enes.siranli@hotmail.com">enes.siranli@hotmail.com</a></p>
+        </section>
+      </section>
+    </footer>
+
+    <!-- Copyright -->
+    <div id="copyright">
+      <ul>
+        <li>&copy; 2025 Bekir Enes Siranli</li>
+        <li>Design inspired by: <a href="https://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth scroll for the "View Projects" link in the intro section
+    document.querySelector('.scrolly').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Draggable Button Script
+	const draggableFrame = document.getElementById('draggable-frame');
+    const draggableButton = document.getElementById('draggable-button');
+    const draggableContainer = document.getElementById('draggable-container');
+    const draggableArea = document.getElementById('draggable-area');
+    const indicators = document.querySelectorAll('#progress-indicators .indicator');
+
+    let startX = 0;
+    let isDragging = false;
+    let limit = draggableArea.offsetWidth - draggableButton.offsetWidth;
+
+	// Update frame size dynamically to match draggable area
+window.addEventListener('resize', updateFrameSize);
+updateFrameSize();  // Initial call to set size
+
+function updateFrameSize() {
+  const areaWidth = draggableArea.offsetWidth;
+  const areaHeight = draggableArea.offsetHeight;
+  draggableFrame.style.width = `${areaWidth}px`;
+  draggableFrame.style.height = `${areaHeight}px`;
+}
+    // Update limit on window resize (optional)
+    window.addEventListener('resize', () => {
+      limit = draggableArea.offsetWidth - draggableButton.offsetWidth;
+    });
+
+    draggableButton.addEventListener('dragstart', function(e) {
+      startX = e.clientX;
+      isDragging = true;
+      draggableButton.style.transition = 'none';  // Disable transition during drag
+      draggableButton.classList.add('dragging'); // Add dragging class for color change
+    });
+
+    draggableButton.addEventListener('dragend', function(e) {
+      isDragging = false;
+      draggableButton.style.transition = 'transform 0.3s ease';
+      draggableButton.classList.remove('dragging'); // Remove dragging class when done
+      if (e.clientX - startX > 150) {
+        window.location.href = "projects.html";
+      } else {
+        draggableContainer.style.transform = 'translateX(0)';
+        updateIndicators(0);
+      }
+    });
+
+    draggableButton.addEventListener('drag', function(e) {
+      if (isDragging && e.clientX) {
+        let moveX = e.clientX - startX;
+        if (moveX < 0) moveX = 0;
+        if (moveX > limit) moveX = limit;
+        draggableContainer.style.transform = `translateX(${moveX}px)`;
+        updateIndicators(moveX);
+      }
+    });
+
+    function updateIndicators(moveX) {
+      let progress = moveX / limit;
+      indicators.forEach((indicator, index) => {
+        if (progress >= (index + 1) / 5) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+  </script>
+  
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
